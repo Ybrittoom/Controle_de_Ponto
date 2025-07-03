@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Controle de Ponto</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="cabecalho">
+    <h1 class="titulo">sistema de ponto</h1>
+
+    <div class="opcoes">
+        <a href="">Funcionarios</a>
+        <a href="">Gestor</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="secao-1">
+      <h2>Area do funcionario</h2>
+      <div class="card">
+        <h3>Bater Ponto</h3>
+        <p>Ola <span>FUncionario teste</span></p>
+        <button class="btn-registrar-entrada">Resgistrar Entrada</button>
+        <button class="btn-registrar-saida">Resgistrar Saida</button>
+        <button class="btn-registrar-almoco">Resgistrar Almoço</button>
+      </div>
+
+      <div class="card">
+        <h3>Historico de ponto</h3>
+        <ul id="historico-lista">
+          <li>Nenhum registro ainda</li>
+        </ul>
+        <button id="btn-ver-historico-completo">Ver Historico Completo</button>
+      </div>
+
+    </section>
+  </main>
+
+    <!--modal de entrada-->
+    <div class="modal-entrada" style="display: none;">
+      <h2>Registrar entrada</h2>
+      <label for="data-hora">Data/Horario</label>
+      <input type="datetime-local" id="datetime-local">
+    </div>
+
+    <!--modal de saida-->
+    <div class="modal-saida" style="display: none;">
+      <h2>Registrar saida</h2>
+      <label for="data-hora">Data/Horario</label>
+      <input type="datetime-local" id="datetime-local">
+    </div>
+
+    <!--modal de almoco-->
+    <div class="modal-almoco" style="display: none;">
+      <h2>Registrar almoco</h2>
+      <label for="data-hora">Data/Horario</label>
+      <input type="datetime-local" id="datetime-local">
+    </div>
+
+  <footer class="rodape">
+    <p>© 2025 - Empresa Exemplo</p>
+  </footer>
+
+
+  <script src="script.js"></script>
+</body>
+</html>
