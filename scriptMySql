@@ -1,0 +1,56 @@
+-- Certifique-se de que está no banco de dados correto
+USE seu_banco_de_dados; -- Substitua 'seu_banco_de_dados' pelo nome do seu banco de dados
+
+-- Criação da tabela funcionario
+CREATE TABLE funcionario (
+    id INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
+    nome_completo VARCHAR(255) NOT NULL,
+    cpf VARCHAR(14) NOT NULL UNIQUE,
+    cargo VARCHAR(255) NOT NULL,
+    data_contratacao DATE NOT NULL,
+    ativo BOOLEAN DEFAULT TRUE,
+    email VARCHAR(255) NOT NULL,
+    telefone VARCHAR(20) NOT NULL,
+    data_nascimento DATE NOT NULL
+);
+
+-- Criação da tabela controle_ponto
+CREATE TABLE controle_ponto (
+    id_ponto INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
+    id_funcionario INT NOT NULL,
+    data_hora_entrada DATETIME NOT NULL,
+    data_hora_saida DATETIME NOT NULL,
+    hora_almoco TIME NOT NULL,
+    -- Definir a chave estrangeira:
+    CONSTRAINT fk_funcionario
+        FOREIGN KEY (id_funcionario)
+        REFERENCES funcionario(id)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE
+);
+
+-- Inserir um funcionário na tabela 'funcionario'
+INSERT INTO funcionario (nome_completo, cpf, cargo, data_contratacao, ativo, email, telefone, data_nascimento)
+VALUES ('Maria Oliveira', '987.654.321-00', 'Designer', '2022-06-20', TRUE, 'maria.o@empresa.com', '19989851984', '2000-11-22');
+
+-- Inserir outro funcionário para testes
+INSERT INTO funcionario (nome_completo, cpf, cargo, data_contratacao, ativo, email, telefone, data_nascimento)
+VALUES ('João Silva', '123.456.789-00', 'Desenvolvedor', '2023-01-15', TRUE, 'joao.s@empresa.com', '11999999999', '1995-05-10');
+
+
+-- Verificar os funcionários inseridos
+SELECT id, nome_completo FROM funcionario;
+
+-- Inserir marcações de ponto na tabela 'controle_ponto'
+-- Para o funcionário com id = 1 (Maria Oliveira, assumindo que foi o primeiro inserido)
+INSERT INTO controle_ponto (id_funcionario, data_hora_entrada, data_hora_saida, hora_almoco)
+VALUES
+    (1, '2025-06-27 08:00:00', '2025-06-27 18:00:00', '13:00:00'); -- Corrigido o formato da hora
+
+-- Para o funcionário com id = 2 (João Silva, assumindo que foi o segundo inserido)
+INSERT INTO controle_ponto (id_funcionario, data_hora_entrada, data_hora_saida, hora_almoco)
+VALUES
+    (2, '2025-06-27 08:30:00', '2025-06-27 17:30:00', '12:30:00'); -- Exemplo para outro funcionário
+
+-- Verificar os registros de ponto
+SELECT * FROM controle_ponto;

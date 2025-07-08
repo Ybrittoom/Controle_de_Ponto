@@ -13,3 +13,7 @@ function fechar_modal(idModal) {
         modal.style.display = "none"
     }
 }
+
+
+
+//historico de ponto 
