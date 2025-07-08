@@ -12,7 +12,7 @@
     <h1 class="titulo">sistema de ponto</h1>
 
     <div class="opcoes">
-        <a href="">Funcionarios</a>
+        <a href="funcionarios.html">Funcionarios</a>
         <a href="">Gestor</a>
     </div>
   </header>
@@ -23,9 +23,9 @@
       <div class="card">
         <h3>Bater Ponto</h3>
         <p>Ola <span>FUncionario teste</span></p>
-        <button class="btn-registrar-entrada">Resgistrar Entrada</button>
-        <button class="btn-registrar-saida">Resgistrar Saida</button>
-        <button class="btn-registrar-almoco">Resgistrar Almoço</button>
+        <button class="btn-registrar-entrada" onclick="abrir_modal('modal-entrada')">Registrar Entrada</button>
+        <button class="btn-registrar-saida" onclick="abrir_modal('modal-saida')">Registrar Saída</button>
+        <button class="btn-registrar-almoco" onclick="abrir_modal('modal-almoco')">Registrar Almoço</button>
       </div>
 
       <div class="card">
@@ -40,24 +40,27 @@
   </main>
 
     <!--modal de entrada-->
-    <div class="modal-entrada" style="display: none;">
+    <div class="modal-entrada" id="modal-entrada" style="display: none;">
       <h2>Registrar entrada</h2>
       <label for="data-hora">Data/Horario</label>
       <input type="datetime-local" id="datetime-local">
+      <button class="btn-fechar" onclick="fechar_modal('modal-entrada')">fechar</button>
     </div>
 
     <!--modal de saida-->
-    <div class="modal-saida" style="display: none;">
+    <div class="modal-saida" id="modal-saida" style="display: none;">
       <h2>Registrar saida</h2>
       <label for="data-hora">Data/Horario</label>
       <input type="datetime-local" id="datetime-local">
+      <button class="btn-fechar" onclick="fechar_modal('modal-saida')">fechar</button>
     </div>
 
     <!--modal de almoco-->
-    <div class="modal-almoco" style="display: none;">
+    <div class="modal-almoco" id="modal-almoco" style="display: none;">
       <h2>Registrar almoco</h2>
       <label for="data-hora">Data/Horario</label>
       <input type="datetime-local" id="datetime-local">
+      <button class="btn-fechar" onclick="fechar_modal('modal-almoco')">fechar</button>
     </div>
 
   <footer class="rodape">
