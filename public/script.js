@@ -16,4 +16,8 @@ function fechar_modal(idModal) {
 
 
 
-//historico de ponto 
+//salvar entrada
+function salvar_entrada() {
+    const dataHoraInput = document.getElementById('data-hora-entrada')
+    const dataHora = dataHoraInput.value
+}

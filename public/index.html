@@ -1,19 +1,21 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Controle de Ponto</title>
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
   <header class="cabecalho">
     <h1 class="titulo">sistema de ponto</h1>
 
     <div class="opcoes">
-        <a href="funcionarios.html">Funcionarios</a>
-        <a href="">Gestor</a>
+      <a href="funcionarios.html">Funcionarios</a>
+      <a href="">Gestor</a>
     </div>
   </header>
 
@@ -39,30 +41,34 @@
     </section>
   </main>
 
-    <!--modal de entrada-->
-    <div class="modal-entrada" id="modal-entrada" style="display: none;">
-      <h2>Registrar entrada</h2>
-      <label for="data-hora">Data/Horario</label>
-      <input type="datetime-local" id="data-hora-entrada">
-      <button class="btn-salvar" onclick="salvarEntrada">Salvar Entrada</button>
-      <button class="btn-fechar" onclick="fechar_modal('modal-entrada')">fechar</button>
-    </div>
+  <!--modal de entrada-->
+  <div class="modal-entrada" id="modal-entrada" style="display: none;">
+    <h2>Registrar entrada</h2>
+    <label for="data-hora-entrada">Data/Horario</label>
+    <input type="datetime-local" id="data-hora-entrada">
+    <button class="btn-salvar-entrada" onclick="salvarEntrada()">Salvar Entrada</button>
+    <button class="btn-fechar" onclick="fechar_modal('modal-entrada')">Fechar</button>
+  </div>
 
-    <!--modal de saida-->
-    <div class="modal-saida" id="modal-saida" style="display: none;">
-      <h2>Registrar saida</h2>
-      <label for="data-hora">Data/Horario</label>
-      <input type="datetime-local" id="data-hora-saida">
-      <button class="btn-fechar" onclick="fechar_modal('modal-saida')">fechar</button>
-    </div>
+  <!--Modal de saida-->
+  <div class="modal-saida" id="modal-saida" style="display: none;">
+    <h2>Registrar saida</h2>
+    <label for="data-hora-saida">Data/Horario</label>
+    <input type="datetime-local" id="data-hora-saida">
+    <input type="hidden" id="id-ponto-saida"> <button class="btn-salvar-saida" onclick="salvarSaida()">Salvar
+      Saída</button>
+    <button class="btn-fechar" onclick="fechar_modal('modal-saida')">Fechar</button>
+  </div>
 
-    <!--modal de almoco-->
-    <div class="modal-almoco" id="modal-almoco" style="display: none;">
-      <h2>Registrar almoco</h2>
-      <label for="data-hora">Data/Horario</label>
-      <input type="datetime-local" id="data-hora-almoco">
-      <button class="btn-fechar" onclick="fechar_modal('modal-almoco')">fechar</button>
-    </div>
+  <!--Modal de almoço-->
+  <div class="modal-almoco" id="modal-almoco" style="display: none;">
+    <h2>Registrar almoço</h2>
+    <label for="data-hora-almoco">Data/Horario</label>
+    <input type="datetime-local" id="data-hora-almoco">
+    <input type="hidden" id="id-ponto-almoco"> <button class="btn-salvar-almoco" onclick="salvarAlmoco()">Salvar
+      Almoço</button>
+    <button class="btn-fechar" onclick="fechar_modal('modal-almoco')">Fechar</button>
+  </div>
 
   <footer class="rodape">
     <p>© 2025 - Empresa Exemplo</p>
@@ -71,4 +77,5 @@
 
   <script src="script.js"></script>
 </body>
+
 </html>
