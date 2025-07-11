@@ -46,7 +46,7 @@ async function salvar_entrada() {
             alert(result.message)
             fechar_modal('modal-entrada')
         } else {
-            alert('Erro ao registrar entrada' + result.error)
+            alert('Erro ao registrar entrada' + " " + result.error)
         }
     } catch (err) {
         console.error('Erro na requisiçao:', err)

@@ -15,8 +15,8 @@ app.listen(port, () => {
 //configuraçao do db
 const pool = mysql.createPool({
     host: 'localhost',
-    user: 'root',
-    password: 'Yagothelinkmysql12',
+    user: 'yago',
+    password: 'Yagothelinkmysql123',
     database: 'controle_ponto'
 })
 
