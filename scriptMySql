@@ -1,5 +1,7 @@
--- Certifique-se de que está no banco de dados correto
-USE seu_banco_de_dados; -- Substitua 'seu_banco_de_dados' pelo nome do seu banco de dados
+
+create database controle_de_ponto
+
+USE controle_de_ponto; 
 
 -- Criação da tabela funcionario
 CREATE TABLE funcionario (
@@ -19,8 +21,8 @@ CREATE TABLE controle_ponto (
     id_ponto INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
     id_funcionario INT NOT NULL,
     data_hora_entrada DATETIME NOT NULL,
-    data_hora_saida DATETIME NOT NULL,
-    hora_almoco TIME NOT NULL,
+    data_hora_saida DATETIME NULL,
+    hora_almoco TIME NULL,
     -- Definir a chave estrangeira:
     CONSTRAINT fk_funcionario
         FOREIGN KEY (id_funcionario)

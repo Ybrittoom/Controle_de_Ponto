@@ -15,9 +15,9 @@ app.listen(port, () => {
 //configuraçao do db
 const pool = mysql.createPool({
     host: 'localhost',
-    user: 'yago',
-    password: 'Yagothelinkmysql123',
-    database: 'controle_ponto'
+    user: 'root',
+    password: 'Yagothelinkmysqlroot123***',
+    database: 'controle_de_ponto'
 })
 
 //middleware para receber todos os dados no formato json
