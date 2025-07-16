@@ -27,17 +27,17 @@ app.use(express.json())
 
 //rota para registrar um ponto de entrada
 app.post('/api/registrar-entrada', async (req, res) => {
-    const { id_funcionario, data_hora_entrada } = req.body
+    const { numero_adesao, data_hora_entrada } = req.body
 
     //validaçao basica
-    if (!id_funcionario || !data_hora_entrada) {
+    if (!numero_adesao || !data_hora_entrada) {
         return res.status(400).json({ error: 'ID do funcionario e data/hora sao obrigatorios'})
     }
 
     try {
         const conexao = await pool.getConnection()// obtem uma conexao pool
         const [result] = await conexao.execute(
-            'INSERT INTO controle_ponto (id_funcionario, data_hora_entrada) VALUES (?, ?)',
+            'INSERT INTO controle_ponto (numero_adesao, data_hora_entrada) VALUES (?, ?)',
             [id_funcionario, data_hora_entrada]
         )
         conexao.release() //libera a conexao e volta para o pool
@@ -109,7 +109,7 @@ app.get('/api/historico_ponto/:id_funcionario', async (req, res) => {
     try {
         const conexao = await pool.getConnection()
         const [rows] = await conexao.execute(
-            'SELECT * FROM controle_ponot WHERE id_funcionario = ? ORDER BY data_hora_entrada DESC',
+            'SELECT * FROM controle_ponto WHERE numero_adesao = ? ORDER BY data_hora_entrada DESC',
             [id_funcionario]
         )
         conexao.release()

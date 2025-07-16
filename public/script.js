@@ -21,7 +21,7 @@ async function salvar_entrada() {
     const dataHoraInput = document.getElementById('data-hora-entrada')
     const dataHora = dataHoraInput.value
 
-    const idFuncionario = 1 // tenho que mudar e dar um jeito de pegar o ID de um usuario que esta na empresa
+    const idFuncionario = 2 // tenho que mudar e dar um jeito de pegar o ID de um usuario que esta na empresa
 
     if (!dataHora) {
         alert('Por favor, selecione a data e hora de entrada!!')
@@ -68,7 +68,22 @@ async function salvarSaida() {
     try {
         const response = await fetch(`/api/registrar-saida/${id_ponto}`, {
             method: 'PUT',
-            
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ data_hora_saida: dataHoraSaida })
         })
+
+        const result = await response.json()
+
+        if (response.ok) {
+            alert(result.message)
+            fechar_modal('modal-saida')
+        } else {
+            alert('Erro ao registrar entrada' + " " + result.error)
+        }
+    } catch (err) {
+        console.error('Erro na requisiçao', err)
+        alert('Erro na conexao com o servidor', err)
     }
 }
