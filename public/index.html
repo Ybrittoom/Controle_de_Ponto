@@ -64,8 +64,10 @@
   <!--Modal de almoço-->
   <div class="modal-almoco" id="modal-almoco" style="display: none;">
     <h2>Registrar almoço</h2>
+    <label for="numero_adesao_funcionario">Numero de Adesao:</label>
+    <input type="number" id="numero_adesao">
     <label for="data-hora-almoco">Data/Horario</label>
-    <input type="datetime-local" id="data-hora-almoco">
+    <input type="datetime-local" id="data-hora-almoco-input">
     <input type="hidden" id="id-ponto-almoco"> <button class="btn-salvar-almoco" onclick="salvarAlmoco()">Salvar
       Almoço</button>
     <button class="btn-fechar" onclick="fechar_modal('modal-almoco')">Fechar</button>
