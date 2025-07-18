@@ -22,7 +22,7 @@ async function salvar_entrada() {
     const dataHoraInput = document.getElementById('data-hora-entrada')
     const dataHora = dataHoraInput.value
 
-    const numero_adesao = 2 // tenho que mudar e dar um jeito de pegar o ID de um usuario que esta na empresa
+    const numero_adesao = 3 // tenho que mudar e dar um jeito de pegar o ID de um usuario que esta na empresa
 
     if (!dataHora) {
         alert('Por favor, selecione a data e hora de entrada!!')
@@ -67,9 +67,12 @@ async function salvar_entrada() {
 async function salvarSaida() {
     const dataHoraInput = document.getElementById('data-hora-saida')
     const dataHoraSaida = dataHoraInput.value
-    const id_ponto = document.getElementById('id_funcionario').value //pega o valor do input que no caso é o ID do funcionario
+    const id_ponto = document.getElementById('id_ponto').value //pega o valor do input que no caso é o ID do funcionario
+    const id_ponto_saida = document.getElementById('id-ponto-saida') //campo oculto no HTML
 
-    if (!dataHoraSaida || !id_ponto) { //verifica se os campos estao preenchidos corretamente
+    const pontoParaSaida = id_ponto_saida
+
+    if (!dataHoraSaida || !pontoParaSaida) { //verifica se os campos estao preenchidos corretamente
         alert('Por favor, preencha os campos data/hora e o ID do funcionarios')
         return
     }
