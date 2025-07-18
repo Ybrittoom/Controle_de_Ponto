@@ -41,7 +41,7 @@ app.post('/api/registrar-entrada', async (req, res) => {
             [numero_adesao, data_hora_entrada]
         )
         conexao.release() //libera a conexao e volta para o pool
-        res.status(201).json({ message: 'Ponto de entrada registrado com sucesso'})
+        res.status(201).json({ message: 'Ponto de entrada registrado com sucesso', id_ponto: result.insertId()/*contem o ID da ultima inserçao AUTO_INCREMENT */})
     } catch (erro) {
         console.error('Erro ao registrar o ponto:', erro)
         res.status(500).json({ error: 'Erro interno no servidor ao registrar entrada'})
@@ -76,7 +76,7 @@ app.put('/api/registrar-saida/:id_ponto', async (req, res) => {
 })
 
 //endpoint para registrar hora de almoço
-app.put('/api/registrar-alomoco/:id_ponto', async (req, res) => {
+app.put('/api/registrar-almoco/:id_ponto', async (req, res) => {
     const { id_ponto } = req.params
     const { hora_almoco } = req.body
 

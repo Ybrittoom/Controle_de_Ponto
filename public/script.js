@@ -14,7 +14,8 @@ function fechar_modal(idModal) {
     }
 }
 
-
+//Variável global para armazenar o ID do ponto atual (opcional, mas facilita)
+let currentPontoId = null
 
 //salvar entrada
 async function salvar_entrada() {
@@ -45,6 +46,14 @@ async function salvar_entrada() {
         if (response.ok) {
             alert(result.message)
             fechar_modal('modal-entrada')
+
+            //armazenar o id_ponto retornado pelo back bb
+            if (result.id_ponto) {
+                currentPontoId = result.id_ponto
+                document.getElementById('id-ponto-saida').value = currentPontoId;
+                document.getElementById('id-ponto-almoco').value = currentPontoId;
+                console.log('ID do Ponto atual armazenado:', currentPontoId);
+            }
         } else {
             alert('Erro ao registrar entrada' + " " + result.error)
         }
@@ -92,19 +101,25 @@ async function salvarAlmoco() {
     const dataHoraInput = document.getElementById('data-hora-almoco-input')
     const dataHoraAlmoco = dataHoraInput.value
     const numero_adesao = document.getElementById('numero_adesao').value //testando com o numero de adesao
+    const id_ponto_almoco = document.getElementById('id-ponto-almoco').value
 
-    if (!dataHoraAlmoco || !numero_adesao) {
+    // verificando o q esta pegando
+    console.log(document.getElementById('data-hora-almoco-input').value);
+    console.log(document.getElementById('numero_adesao').value);
+     console.log('ID do Ponto (Almoço):', id_ponto_almoco); // NOVO LOG
+
+    if (!dataHoraAlmoco || !numero_adesao || !id_ponto_almoco) {
         alert('Por favor! Preencha os campos data/Hora e o Numero de adesao do funcionario')
         return
     }
 
     try {
-        const response = await fetch(`/api/registrar-saida/${numero_adesao}`, {
+        const response = await fetch(`/api/registrar-almoco/${id_ponto_almoco}`, {
             method: "PUT",
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ data_hora_almoco: dataHoraAlmoco})
+            body: JSON.stringify({ hora_almoco: dataHoraAlmoco})
         })
         const result = await response.json()
 
@@ -112,8 +127,10 @@ async function salvarAlmoco() {
             alert(result.message)
             fechar_modal('modal-almoco')
         } else {
-            console.error('Erro ao registrar almoço', err)
-            alert('Erro na conexao com o servidor',  err)
+            alert('Erro ao registrar almoço: ' + (result.error || result.message || 'Erro desconhecido'));
         }
+    } catch (err) {
+        console.error('Erro na requisiçao', err)
+        alert('Erro na conexao com o servidor', err)
     }
 }
