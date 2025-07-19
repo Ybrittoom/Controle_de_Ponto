@@ -22,7 +22,7 @@ async function salvar_entrada() {
     const dataHoraInput = document.getElementById('data-hora-entrada')
     const dataHora = dataHoraInput.value
 
-    const numero_adesao = 3 // tenho que mudar e dar um jeito de pegar o ID de um usuario que esta na empresa
+    const numero_adesao = 4 // tenho que mudar e dar um jeito de pegar o ID de um usuario que esta na empresa
 
     if (!dataHora) {
         alert('Por favor, selecione a data e hora de entrada!!')
@@ -54,6 +54,7 @@ async function salvar_entrada() {
                 document.getElementById('id-ponto-almoco').value = currentPontoId;
                 console.log('ID do Ponto atual armazenado:', currentPontoId);
             }
+            
         } else {
             alert('Erro ao registrar entrada' + " " + result.error)
         }
@@ -65,6 +66,14 @@ async function salvar_entrada() {
 
 // salvar saida
 async function salvarSaida() {
+
+    //verificando se ha um ponto de entrada ativo
+    if (!currentPontoId) {
+        alert('Nenhum ponto de entrada registrado para esta sessao. Por favor, registre sua entrada primeiro!')
+        return
+    }
+
+
     const dataHoraInput = document.getElementById('data-hora-saida')
     const dataHoraSaida = dataHoraInput.value
     const id_ponto = document.getElementById('id_ponto').value //pega o valor do input que no caso é o ID do funcionario
@@ -91,6 +100,7 @@ async function salvarSaida() {
         if (response.ok) {
             alert(result.message)
             fechar_modal('modal-saida')
+            currentPontoId = null
         } else {
             alert('Erro ao registrar saida' + " " + result.error)
         }
@@ -101,17 +111,27 @@ async function salvarSaida() {
 }
 
 async function salvarAlmoco() {
+
+    if (!currentPontoId) {
+        alert('Nenhum ponto de entrada registrado para esta sessao. Por favor, registre sua entrada primeiro!')
+        return
+    }
+
+
     const dataHoraInput = document.getElementById('data-hora-almoco-input')
-    const dataHoraAlmoco = dataHoraInput.value
-    const numero_adesao = document.getElementById('numero_adesao').value //testando com o numero de adesao
+    const dataHoraCompleta = dataHoraInput.value // '2025-07-19T13:30
+    //const numero_adesao = document.getElementById('numero_adesao').value //testando com o numero de adesao
     const id_ponto_almoco = document.getElementById('id-ponto-almoco').value
 
     // verificando o q esta pegando
-    console.log(document.getElementById('data-hora-almoco-input').value);
-    console.log(document.getElementById('numero_adesao').value);
-     console.log('ID do Ponto (Almoço):', id_ponto_almoco); // NOVO LOG
+    console.log('data/hora almoço:',  dataHoraInput)
+    console.log('Id do ponto (almoço):', id_ponto_almoco)
 
-    if (!dataHoraAlmoco || !numero_adesao || !id_ponto_almoco) {
+    const horal_Almoco_formatada = dataHoraCompleta.slice(11, 16)
+
+    console.log('Hora do Almoço formatada:', horal_Almoco_formatada)
+
+    if (!dataHoraInput || !id_ponto_almoco) {
         alert('Por favor! Preencha os campos data/Hora e o Numero de adesao do funcionario')
         return
     }
@@ -122,13 +142,14 @@ async function salvarAlmoco() {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ hora_almoco: dataHoraAlmoco})
+            body: JSON.stringify({ hora_almoco: horal_Almoco_formatada})
         })
         const result = await response.json()
 
         if(response.ok) {
             alert(result.message)
             fechar_modal('modal-almoco')
+            currentPontoId = null
         } else {
             alert('Erro ao registrar almoço: ' + (result.error || result.message || 'Erro desconhecido'));
         }
