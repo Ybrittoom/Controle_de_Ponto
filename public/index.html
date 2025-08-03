@@ -53,7 +53,7 @@
   <div class="modal-saida" id="modal-saida" style="display: none;">
     <h2>Registrar saida</h2>
     <label for="id_do_funcionario">ID do funcionario</label>
-    <!-- <input type="number" id="id_ponto"> -->
+    <input type="number" id="id_ponto"> 
     <label for="data-hora-saida">Data/Horario</label>
     <input type="datetime-local" id="data-hora-saida">
     <input type="hidden" id="id-ponto-saida"> <button class="btn-salvar-saida" onclick="salvarSaida()">Salvar
@@ -63,14 +63,12 @@
 
   <!--Modal de almoço-->
   <div class="modal-almoco" id="modal-almoco" style="display: none;">
-    <h2>Registrar almoço</h2>
-    <label for="numero_adesao_funcionario">Numero de Adesao:</label>
-    <input type="number" id="numero_adesao">
-    <label for="data-hora-almoco">Data/Horario</label>
-    <input type="datetime-local" id="data-hora-almoco-input">
-    <!--Novo input aq pra testa o bglh-->
-    <input type="hidden" id="id-ponto-almoco"> <button class="btn-salvar-almoco" onclick="salvarAlmoco()">Salvar
-      Almoço</button>
+    <h2>Registrar Almoço</h2>
+    <label for="id_ponto">Id do ponto(entrada)</label>
+    <input type="number" id="id_ponto_almoco">
+    <label for="">Data/hora Almoço</label>
+    <input type="datetime-local" id="data_hora_almoco">
+    <button class="btn_salvar_almoco" onclick="salvarAlmoco()">Salvar</button>
     <button class="btn-fechar" onclick="fechar_modal('modal-almoco')">Fechar</button>
   </div>
 
