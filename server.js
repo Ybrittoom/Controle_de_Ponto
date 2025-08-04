@@ -80,6 +80,8 @@ app.put('/api/registrar-almoco/:id_ponto', async (req, res) => {
     const { id_ponto } = req.params
     const { hora_almoco } = req.body
 
+    const hora = hora_almoco.slice(11, 16)
+
     if (!hora_almoco) {
         return res.status(400).json({ error: 'Hora do almoço obrigatorio!'})
     }
@@ -88,7 +90,7 @@ app.put('/api/registrar-almoco/:id_ponto', async (req, res) => {
         const conexao = await pool.getConnection()
         const [result] = await conexao.execute(
             'UPDATE controle_ponto SET hora_almoco = ? WHERE id_ponto = ?',
-            [hora_almoco, id_ponto]
+            [hora, id_ponto]
         )
         conexao.release()
 
