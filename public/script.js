@@ -6,6 +6,27 @@ function abrir_modal(idModal) {
     }
 }
 
+//abrir modal 'salvarSaida'
+function abrir_modal_saida() {
+    if (!currentPontoId) {
+        alert('Nenhum ponto de entrada registrado para esta sessao.')
+    }
+
+    document.getElementById('id-ponto-saida').value = currentPontoId
+    abrir_modal('modal-saida')
+}
+
+//abrir modal 'salvarAlmoço'
+function abrir_modal_almoco() {
+    if (!currentPontoId) {
+        alert('Nenhum ponto de entrada registrado para esta sessao')
+        return
+    }
+
+    document.getElementById('id-ponto-almoco').value = currentPontoId
+    abrir_modal('modal-almoco')
+}
+
 //fechar modal
 function fechar_modal(idModal) {
     const modal = document.getElementById(idModal)
@@ -22,7 +43,7 @@ async function salvar_entrada() {
     const dataHoraInput = document.getElementById('data-hora-entrada')
     const dataHora = dataHoraInput.value
 
-    const numero_adesao = 4 // tenho que mudar e dar um jeito de pegar o ID de um usuario que esta na empresa
+    const numero_adesao = 2 // tenho que mudar e dar um jeito de pegar o ID de um usuario que esta na empresa
 
     if (!dataHora) {
         alert('Por favor, selecione a data e hora de entrada!!')
@@ -50,9 +71,7 @@ async function salvar_entrada() {
             //armazenar o id_ponto retornado pelo back bb
             if (result.id_ponto) {
                 currentPontoId = result.id_ponto
-                document.getElementById('id-ponto-saida').value = currentPontoId;
-                document.getElementById('id-ponto-almoco').value = currentPontoId;
-                console.log('ID do Ponto atual armazenado:', currentPontoId);
+                console.log("ID do ponto atual armazenado:", currentPontoId)
             }
             
         } else {
@@ -84,6 +103,9 @@ async function salvarSaida() {
         alert('Por favor, preencha os campos data/hora e o ID do funcionarios')
         return
     }
+
+    console.log('ID do ponto: ', id_ponto)
+    console.log('Data/Hora da saida: ', dataHoraSaida)
 
     try {
         const response = await fetch(`/api/registrar-saida/${id_ponto}`, {

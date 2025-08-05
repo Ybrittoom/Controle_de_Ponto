@@ -104,20 +104,3 @@ app.put('/api/registrar-almoco/:id_ponto', async (req, res) => {
     }
 })
 
-//endpoint para buscar o historioco de ponto de um funcionario
-app.get('/api/historico_ponto/:id_funcionario', async (req, res) => {
-    const { id_funcionario } = req.params
-
-    try {
-        const conexao = await pool.getConnection()
-        const [rows] = await conexao.execute(
-            'SELECT * FROM controle_ponto WHERE numero_adesao = ? ORDER BY data_hora_entrada DESC',
-            [id_funcionario]
-        )
-        conexao.release()
-        res.status(200).json(rows)
-    } catch (err) {
-        console.error('Erro ao buscar o historico de ponto', err)
-        res.status(500).json({ error: 'Erro no interno no servidor ao buscar o historico'})
-    }
-})
