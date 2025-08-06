@@ -42,13 +42,17 @@ let currentPontoId = null
 async function salvar_entrada() {
     const dataHoraInput = document.getElementById('data-hora-entrada')
     const dataHora = dataHoraInput.value
+    const codigoAdesao = document.getElementById('codigo_de_adesao')
 
-    const numero_adesao = 2 // tenho que mudar e dar um jeito de pegar o ID de um usuario que esta na empresa
+    //const numero_adesao = 2 // tenho que mudar e dar um jeito de pegar o ID de um usuario que esta na empresa
 
     if (!dataHora) {
-        alert('Por favor, selecione a data e hora de entrada!!')
+        alert('Por favor, verifique se o codigo de adesao ou data/hora esta corretos!')
         return
     }
+
+        console.log('Codigo de Adesao:' , codigoAdesao)
+        console.log('Data/Hora de entrada: ', dataHora)
 
     try {
         const response = await fetch('/api/registrar-entrada', {
@@ -57,7 +61,7 @@ async function salvar_entrada() {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                numero_adesao: numero_adesao,
+                codigoAdesao: codigoAdesao,
                 data_hora_entrada: dataHora
             })
         })
@@ -165,4 +169,16 @@ async function salvarAlmoco() {
     } catch (err) {
         console.error('Erro na requisiçao:', err)
     }
+}
+
+//FUNÇAO PARA CARREGAR O HISTORICO DE PONTOS
+async function carregarHistoricoDePontos() {
+    const id_funcionario = document.getElementById('id_funcionario').value
+
+    if (!id_funcionario) {
+        alert('Por Favor! Insira o seu codigo de adesao ou do funcionario que deseja ver o historico!')
+        return
+    }
+
+
 }

@@ -31,6 +31,8 @@
 
       <div class="card">
         <h3>Historico de ponto</h3>
+        <label for="">ID do funcionario</label>
+        <input type="number" id="id_funcionario">
         <ul id="historico-lista">
           <li>Nenhum registro ainda</li>
         </ul>
@@ -43,6 +45,8 @@
   <!--modal de entrada-->
   <div class="modal-entrada" id="modal-entrada" style="display: none;">
     <h2>Registrar entrada</h2>
+    <label for="">Codigo de adesao do funcionario</label>
+    <input type="number" id="codigo_de_adesao">
     <label for="data-hora-entrada">Data/Horario</label>
     <input type="datetime-local" id="data-hora-entrada">
     <button class="btn-salvar-entrada" onclick="salvar_entrada()">Salvar Entrada</button>

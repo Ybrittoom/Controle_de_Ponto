@@ -27,18 +27,19 @@ app.use(express.json())
 
 //rota para registrar um ponto de entrada
 app.post('/api/registrar-entrada', async (req, res) => {
-    const { numero_adesao, data_hora_entrada } = req.body
+    const { codigoAdesao, data_hora_entrada } = req.body
 
     //validaçao basica
-    if (!numero_adesao || !data_hora_entrada) {
+    if (!codigoAdesao || !data_hora_entrada) {
         return res.status(400).json({ error: 'Numero de adesao do funcionario e data/hora sao obrigatorios'})
     }
+
 
     try {
         const conexao = await pool.getConnection()// obtem uma conexao pool
         const [result] = await conexao.execute(
             'INSERT INTO controle_ponto (numero_adesao, data_hora_entrada) VALUES (?, ?)',
-            [numero_adesao, data_hora_entrada]
+            [codigoAdesao, data_hora_entrada]
         )
         conexao.release() //libera a conexao e volta para o pool
         res.status(201).json({ message: 'Ponto de entrada registrado com sucesso', id_ponto: result.insertId/*contem o ID da ultima inserçao AUTO_INCREMENT */})
