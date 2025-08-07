@@ -22,12 +22,15 @@ const pool = mysql.createPool({
 
 //middleware para receber todos os dados no formato json
 app.use(express.json())
+app.use(express.urlencoded({ extended: true })) //importante: isso permite ler o corpo da requisiçao
 
 //ENDPOINTS 
 
 //rota para registrar um ponto de entrada
 app.post('/api/registrar-entrada', async (req, res) => {
     const { codigoAdesao, data_hora_entrada } = req.body
+
+    console.log('REQ.BODY: ', req.body)
 
     //validaçao basica
     if (!codigoAdesao || !data_hora_entrada) {

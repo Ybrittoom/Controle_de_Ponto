@@ -42,7 +42,7 @@ let currentPontoId = null
 async function salvar_entrada() {
     const dataHoraInput = document.getElementById('data-hora-entrada')
     const dataHora = dataHoraInput.value
-    const codigoAdesao = document.getElementById('codigo_de_adesao')
+    const codigoAdesao = document.getElementById('codigo_de_adesao').value
 
     //const numero_adesao = 2 // tenho que mudar e dar um jeito de pegar o ID de um usuario que esta na empresa
 
@@ -76,6 +76,7 @@ async function salvar_entrada() {
             if (result.id_ponto) {
                 currentPontoId = result.id_ponto
                 console.log("ID do ponto atual armazenado:", currentPontoId)
+                alert('ATENÇÃO: ID do ponto registrado(NAO PERCA!): ', currentPontoId)
             }
             
         } else {
@@ -161,7 +162,7 @@ async function salvarAlmoco() {
 
         if (response.ok) {
             alert(result.message)
-            fechar_modal('modal-saida')
+            fechar_modal('modal-almoco')
             currentPontoId = null
         } else {
             alert('Erro ao registrar almoço:' + " " + result.error)
@@ -174,11 +175,25 @@ async function salvarAlmoco() {
 //FUNÇAO PARA CARREGAR O HISTORICO DE PONTOS
 async function carregarHistoricoDePontos() {
     const id_funcionario = document.getElementById('id_funcionario').value
+    const historico_lista = document.getElementById('historico_lista')
 
     if (!id_funcionario) {
         alert('Por Favor! Insira o seu codigo de adesao ou do funcionario que deseja ver o historico!')
         return
     }
 
+    try {
+        const response = await fetch(`/api/registrar-alomo/${id_funcionario}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ id_funcionario})
+        })
+
+        const result = await response.json()
+
+        
+    }
 
 }
