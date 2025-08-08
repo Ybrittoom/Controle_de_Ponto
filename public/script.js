@@ -175,7 +175,7 @@ async function salvarAlmoco() {
 //FUNÇAO PARA CARREGAR O HISTORICO DE PONTOS
 async function carregarHistoricoDePontos() {
     const id_funcionario = document.getElementById('id_funcionario').value
-    const historico_lista = document.getElementById('historico_lista')
+    const historico_lista = document.getElementById('historico-lista')
 
     if (!id_funcionario) {
         alert('Por Favor! Insira o seu codigo de adesao ou do funcionario que deseja ver o historico!')
@@ -183,17 +183,21 @@ async function carregarHistoricoDePontos() {
     }
 
     try {
-        const response = await fetch(`/api/registrar-alomo/${id_funcionario}`, {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ id_funcionario})
-        })
-
+        const response = await fetch(`/api/historico-de-pontos/${id_funcionario}`)
         const result = await response.json()
 
+        historico_lista.textContent = "" //limpando o campo de lista 
+
+        result.forEach(ponto => {
+            const item =  document.createElement('li')
+            item.textContent = `Entrada ${ponto.data_hora_entrada} | Almoço: ${ponto.hora_almoco} | Saida: ${ponto.data_hora_saida}`
+            historico_lista.appendChild(item) //adiciona um novo elemento "li" dentro da lista desordenada
+        });
+
         
+    } catch (err) {
+        console.error("Erro ao tentar mostrar o historico: ", err)
+        console.log(err)
     }
 
 }
