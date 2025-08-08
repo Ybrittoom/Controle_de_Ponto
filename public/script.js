@@ -188,9 +188,21 @@ async function carregarHistoricoDePontos() {
 
         historico_lista.textContent = "" //limpando o campo de lista 
 
+        if (!Array.isArray(result)) {
+            alert(result.message || "Erro inesperado")
+            return
+        }
+
         result.forEach(ponto => {
+            const dataHoraEntrada = ponto.data_hora_entrada.replace('T', ' ', 'Z')
+            const horaAlmoco = ponto.hora_almoco
+            const dataHoraSaida = ponto.data_hora_saida ? ponto.data_hora_saida.replace('T', ' ') : ''
+
+            const entradaFormatada = dataHoraEntrada.replace('T', ' ').replace('Z', '').split('.')[0]
+            const saidaFormatada = dataHoraSaida.replace('T', ' ').replace('Z', '').split('.')[0]
+
             const item =  document.createElement('li')
-            item.textContent = `Entrada ${ponto.data_hora_entrada} | Almoço: ${ponto.hora_almoco} | Saida: ${ponto.data_hora_saida}`
+            item.textContent = `Entrada ${entradaFormatada} | Almoço: ${horaAlmoco} | Saida: ${saidaFormatada}`
             historico_lista.appendChild(item) //adiciona um novo elemento "li" dentro da lista desordenada
         });
 
