@@ -21,67 +21,104 @@
   <main>
     <section class="secao-1">
       <h2>Area do ponto dos funcionarios</h2>
-      <div class="card">
-        <h3>Bater Ponto</h3>
-        <p>Ola <span>Gestor teste </span></p>
-        <button class="btn-registrar-entrada" onclick="abrir_modal('modal-entrada')">Registrar Entrada</button>
-        <button class="btn-registrar-saida" onclick="abrir_modal_saida()">Registrar Saída</button>
-        <button class="btn-registrar-almoco" onclick="abrir_modal('modal-almoco')">Registrar Almoço</button>
-      </div>
+      <div class="cards-container">
+        <div class="card">
+          <h3>Bater Ponto</h3>
+          <p>Ola <span>Gestor teste </span></p>
+          <button class="btn-registrar-entrada" onclick="abrir_modal('modal-entrada')">Registrar Entrada</button>
+          <button class="btn-registrar-saida" onclick="abrir_modal_saida()">Registrar Saída</button>
+          <button class="btn-registrar-almoco" onclick="abrir_modal('modal-almoco')">Registrar Almoço</button>
+        </div>
 
-      <div class="card">
-        <h3>Historico de ponto</h3>
-        <label for="">ID do funcionario</label>
-        <input type="number" id="id_funcionario">
-        <ul id="historico-lista">
-          <li>Nenhum registro ainda</li>
-        </ul>
-        <button id="btn-ver-historico-completo" onclick=" carregarHistoricoDePontos()">Ver Historico Completo</button>
+        <div class="card">
+          <h3>Historico de ponto</h3>
+          <div class="divfuncionario">
+            <label for="">ID do funcionario</label>
+            <input type="number" id="id_funcionario">
+          </div>
+          <ul id="historico-lista">
+            <li>Nenhum registro ainda</li>
+          </ul>
+          <button id="btn-ver-historico-completo" onclick=" carregarHistoricoDePontos()">Ver Historico Completo</button>
+        </div>
       </div>
-
     </section>
   </main>
 
   <!--modal de entrada-->
   <div class="modal-entrada" id="modal-entrada" style="display: none;">
-    <h2>Registrar entrada</h2>
-    <label for="">Codigo de adesao do funcionario</label>
-    <input type="number" id="codigo_de_adesao">
-    <label for="data-hora-entrada">Data/Horario</label>
-    <input type="datetime-local" id="data-hora-entrada">
-    <button class="btn-salvar-entrada" onclick="salvar_entrada()">Salvar Entrada</button>
-    <button class="btn-fechar" onclick="fechar_modal('modal-entrada')">Fechar</button>
+    <div class="modal">
+      <h2>Registrar entrada</h2>
+      <div class="formGrupo">
+        <label for="codigoAdesao">Codigo de adesao do funcionario</label>
+        <input type="number" id="codigo_de_adesao">
+      </div>
+
+      <div class="formGrupo">
+        <label for="data-hora-entrada">Data/Horario</label>
+        <input type="datetime-local" id="data-hora-entrada">
+      </div>
+
+      <div class="divBotoes">
+        <button class="btn-salvar-entrada" onclick="salvar_entrada()">Salvar Entrada</button>
+        <button class="btn-fechar" onclick="fechar_modal('modal-entrada')">Fechar</button>
+      </div>
+
+    </div>
   </div>
 
   <!--Modal de saida-->
   <div class="modal-saida" id="modal-saida" style="display: none;">
-    <h2>Registrar saida</h2>
-    <label for="id_do_funcionario">ID do ponto(entrada)</label>
-    <input type="number" id="id_ponto"> 
-    <label for="data-hora-saida">Data/Horario</label>
-    <input type="datetime-local" id="data-hora-saida">
-    <input type="hidden" id="id-ponto-saida"> <button class="btn-salvar-saida" onclick="salvarSaida()">Salvar
-      Saída</button>
-    <button class="btn-fechar" onclick="fechar_modal('modal-saida')">Fechar</button>
-  </div>
+    <div class="modal">
+      <h2>Registrar Saida</h2>
 
-  <!--Modal de almoço-->
-  <div class="modal-almoco" id="modal-almoco" style="display: none;">
-    <h2>Registrar Almoço</h2>
-    <label for="id_ponto">Id do ponto(entrada)</label>
-    <input type="number" id="id_ponto_almoco">
-    <label for="">Data/hora Almoço</label>
-    <input type="datetime-local" id="data_hora_almoco">
-    <button class="btn_salvar_almoco" onclick="salvarAlmoco()">Salvar</button>
-    <button class="btn-fechar" onclick="fechar_modal('modal-almoco')">Fechar</button>
-  </div>
+      <div class="formGrupo">
+        <label for="id_do_funcionario">ID do ponto(entrada)</label>
+        <input type="number" id="id_ponto">
+      </div>
 
-  <footer class="rodape">
-    <p>© 2025 - Empresa Exemplo</p>
-  </footer>
+      <div class="formGrupo">
+        <label for="data-hora-saida">Data/Horario</label>
+        <input type="datetime-local" id="data-hora-saida">
+      </div>
+
+      <div class="divBotoes">
+        <input type="hidden" id="id-ponto-saida"> <button class="btn-salvar-saida" onclick="salvarSaida()">Salvar
+          Saída</button>
+        <button class="btn-fechar" onclick="fechar_modal('modal-saida')">Fechar</button>
+      </div>
+
+    </div>
 
 
-  <script src="script.js"></script>
+    <!--Modal de almoço-->
+    <div class="modal-almoco" id="modal-almoco" style="display: none;">
+      <div class="modal">
+        <h2>Regsitrar entrada</h2>
+        <div class="formGrupo">
+          <input type="number" id="id_ponto_almoco">
+          <label for="data/horaAlmoco">Data/hora Almoço</label>
+        </div>
+
+        <div class="formGrupo">
+          <label for="id_ponto">Id do ponto(entrada)</label>
+          <input type="datetime-local" id="data_hora_almoco">
+        </div>
+
+        <div>
+          <button class="btn_salvar_almoco" onclick="salvarAlmoco()">Salvar</button>
+          <button class="btn-fechar" onclick="fechar_modal('modal-almoco')">Fechar</button>
+        </div>
+
+      </div>
+    </div>
+
+    <footer class="rodape">
+      <p>© 2025 - Empresa Exemplo</p>
+    </footer>
+
+
+    <script src="script.js"></script>
 </body>
 
 </html>
