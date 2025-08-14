@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Controle de Ponto</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
   <link rel="stylesheet" href="style.css">
 </head>
 
@@ -21,15 +22,21 @@
   <main>
     <section class="secao-1">
       <h2>Area do ponto dos funcionarios</h2>
-      
+
       <div class="cards-container">
         <div class="card">
           <h3>Bater Ponto</h3>
           <p>Ola <span>Gestor teste </span></p>
           <div class="btn-group">
-            <button class="btn-registrar-entrada" onclick="abrir_modal('modal-entrada')">Registrar Entrada</button>
-            <button class="btn-registrar-saida" onclick="abrir_modal_saida()">Registrar Saída</button>
-            <button class="btn-registrar-almoco" onclick="abrir_modal('modal-almoco')">Registrar Almoço</button>
+            <button class="btn btn-registrar-entrada" onclick="abrir_modal('modal-entrada')">
+              <i class="fa-solid fa-arrow-right-long"></i> Registrar entrada
+            </button>
+            <button class="btn btn-registrar-saida" onclick="abrir_modal_saida()">
+              <i class="fa-solid fa-arrow-left-long"></i> Registrar saida
+            </button>
+            <button class="btn-registrar-almoco" onclick="abrir_modal('modal-almoco')">
+              <i class="fa-solid fa-burger"></i> Registrar almoço
+            </button>
           </div>
         </div>
 
@@ -42,7 +49,8 @@
           <ul id="historico-lista">
             <li>Nenhum registro ainda</li>
           </ul>
-          <button class="btn btn-historico" id="btn-ver-historico-completo" onclick=" carregarHistoricoDePontos()">Ver Historico Completo</button>
+          <button class="btn btn-historico" id="btn-ver-historico-completo" onclick=" carregarHistoricoDePontos()">Ver
+            Historico Completo</button>
         </div>
       </div>
     </section>
@@ -63,7 +71,9 @@
       </div>
 
       <div class="modal-actions">
-        <button class="btn-salvar-entrada" onclick="salvar_entrada()">Salvar Entrada</button>
+        <button class="btn-salvar-entrada" onclick="salvar_entrada()">
+          <i class="fa-solid fa-arrow-right-long"></i>Salvar Entrada
+        </button>
         <button class="btn-fechar" onclick="fechar_modal('modal-entrada')">Fechar</button>
       </div>
 
@@ -92,36 +102,31 @@
       </div>
 
     </div>
+  </div>
 
-
-    <!--Modal de almoço-->
-    <div class="modal-overlay" id="modal-almoco" style="display: none;">
-      <div class="modal">
-        <h2>Regsitrar entrada</h2>
-        <div class="form-group">
-          <input type="number" id="id_ponto_almoco">
-          <label for="data/horaAlmoco">Data/hora Almoço</label>
-        </div>
-
-        <div class="form-group">
-          <label for="id_ponto">Id do ponto(entrada)</label>
-          <input type="datetime-local" id="data_hora_almoco">
-        </div>
-
-        <div class="modal-actions">
-          <button class="btn_salvar_almoco" onclick="salvarAlmoco()">Salvar</button>
-          <button class="btn-fechar" onclick="fechar_modal('modal-almoco')">Fechar</button>
-        </div>
-
+  <!--Modal de almoço-->
+  <div class="modal-overlay" id="modal-almoco" style="display: none;">
+    <div class="modal">
+      <h2>Regsitrar entrada</h2>
+      <div class="form-group">
+        <input type="number" id="id_ponto_almoco">
+        <label for="data/horaAlmoco">Data/hora Almoço</label>
       </div>
+
+      <div class="form-group">
+        <label for="id_ponto">Id do ponto(entrada)</label>
+        <input type="datetime-local" id="data_hora_almoco">
+      </div>
+
+      <div class="modal-actions">
+        <button class="btn_salvar_almoco" onclick="salvarAlmoco()">Salvar</button>
+        <button class="btn-fechar" onclick="fechar_modal('modal-almoco')">Fechar</button>
+      </div>
+
     </div>
+  </div>
 
-    <footer class="rodape">
-      <p>© 2025 - Empresa Exemplo</p>
-    </footer>
-
-
-    <script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 
 </html>

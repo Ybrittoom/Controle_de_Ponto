@@ -1,6 +1,7 @@
 //funçao para abri o modal
 function abrir_modal(idModal) {
     const modal = document.getElementById(idModal)
+    console.log(modal)
     if (modal) {
         modal.style.display = "block"
     }
@@ -16,16 +17,7 @@ function abrir_modal_saida() {
     abrir_modal('modal-saida')
 }
 
-//abrir modal 'salvarAlmoço'
-function abrir_modal_almoco() {
-    if (!currentPontoId) {
-        alert('Nenhum ponto de entrada registrado para esta sessao')
-        return
-    }
 
-    document.getElementById('id-ponto-almoco').value = currentPontoId
-    abrir_modal('modal-almoco')
-}
 
 //fechar modal
 function fechar_modal(idModal) {
