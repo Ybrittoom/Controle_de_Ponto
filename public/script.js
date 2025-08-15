@@ -9,10 +9,6 @@ function abrir_modal(idModal) {
 
 //abrir modal 'salvarSaida'
 function abrir_modal_saida() {
-    if (!currentPontoId) {
-        alert('Nenhum ponto de entrada registrado para esta sessao.')
-    }
-
     document.getElementById('id-ponto-saida').value = currentPontoId
     abrir_modal('modal-saida')
 }
@@ -84,15 +80,19 @@ async function salvar_entrada() {
 async function salvarSaida() {
 
     //verificando se ha um ponto de entrada ativo
-    if (!currentPontoId) {
-        alert('Nenhum ponto de entrada registrado para esta sessao. Por favor, registre sua entrada primeiro!')
-        return
-    }
+    // if () {
+    //     alert('Nenhum ponto de entrada registrado para esta sessao. Por favor, registre sua entrada primeiro!')
+    //     return
+    // }
 
-    const dataHoraInput = document.getElementById('data-hora-saida')
+    
+    const dataHoraInput = document.getElementById('data-hora-saida')//input no html
     const dataHoraSaida = dataHoraInput.value
-    const id_ponto = document.getElementById('id_ponto').value //pega o valor do input que no caso é o ID do funcionario
-    const id_ponto_saida = document.getElementById('id-ponto-saida') //campo oculto no HTML
+    let id_ponto = document.getElementById('id_ponto').value
+    console.log(id_ponto) //pega o valor do input que no caso é o ID do funcionario
+    id_ponto = currentPontoId
+    console.log(id_ponto)
+    const id_ponto_saida = document.getElementById('id-ponto-saida') 
 
     const pontoParaSaida = id_ponto_saida
 
@@ -155,7 +155,6 @@ async function salvarAlmoco() {
         if (response.ok) {
             alert(result.message)
             fechar_modal('modal-almoco')
-            currentPontoId = null
         } else {
             alert('Erro ao registrar almoço:' + " " + result.error)
         }
