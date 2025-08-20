@@ -59,6 +59,7 @@ async function salvar_entrada() {
         if (response.ok) {
             alert(result.message)
             fechar_modal('modal-entrada')
+            localStorage.setItem('currentPontoId: ', result.id_ponto)
 
             //armazenar o id_ponto retornado pelo back bb
             if (result.id_ponto) {
@@ -66,6 +67,7 @@ async function salvar_entrada() {
                 console.log("ID do ponto atual armazenado:", currentPontoId)
                 alert('ATENÇÃO: ID do ponto registrado(NAO PERCA!): ', currentPontoId)
             }
+            
             
         } else {
             alert('Erro ao registrar entrada' + " " + result.error)
@@ -78,21 +80,17 @@ async function salvar_entrada() {
 
 // salvar saida
 async function salvarSaida() {
+    let id_ponto = localStorage.getItem('currentPontoId')
 
-    //verificando se ha um ponto de entrada ativo
-    // if () {
-    //     alert('Nenhum ponto de entrada registrado para esta sessao. Por favor, registre sua entrada primeiro!')
-    //     return
-    // }
+    if (!id_ponto) {
+        alert('Nuenhum ponto de entrada ativo. Por favor, registre sua entrada primeiro!')
+        console.log('Nuenhum ponto de entrada ativo. Por favor, registre sua entrada primeiro!')
+        return
+    }
 
-    
+
     const dataHoraInput = document.getElementById('data-hora-saida')//input no html
-    const dataHoraSaida = dataHoraInput.value
-    let id_ponto = document.getElementById('id_ponto').value
-    console.log(id_ponto) //pega o valor do input que no caso é o ID do funcionario
-    id_ponto = currentPontoId
-    console.log(id_ponto)
-    const id_ponto_saida = document.getElementById('id-ponto-saida') 
+    const dataHoraSaida = dataHoraInput.value 
 
     const pontoParaSaida = id_ponto_saida
 
@@ -118,7 +116,7 @@ async function salvarSaida() {
         if (response.ok) {
             alert(result.message)
             fechar_modal('modal-saida')
-            currentPontoId = null
+            localStorage.removeItem('currentPontoId'); 
         } else {
             alert('Erro ao registrar saida' + " " + result.error)
         }

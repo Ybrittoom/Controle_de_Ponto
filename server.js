@@ -61,6 +61,8 @@ app.put('/api/registrar-saida/:id_ponto', async (req, res) => {
         return res.status(400).json({ error: 'Data/Hora de saida é obrigatorio!'})
     }
 
+    console.log('LADO DO SERVIDOR: ID da entrada: ', id_ponto)
+
     try {
         const conexao = await pool.getConnection()
         const [result] = await conexao.execute(
