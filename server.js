@@ -130,3 +130,26 @@ app.get('/api/historico-de-pontos/:id_funcionario', async (req, res) => {
         res.status(500).json({ error: 'Erro interno no servidor'})
     }
 })
+
+app.get('/api/funcionarios', async (req, res) => {
+
+    try {
+        const conexao = await pool.getConnection()
+        const [result] = await conexao.execute(
+            'SELECT * FROM funcionario'
+        )
+        conexao.release()
+
+        if (result.length > 0) {
+            res.status(200).json(result)
+        } else {
+            res.status(400).json({ message: 'Nenhum funcionario encontrado!'})
+        }
+
+        res.status(200).json(result)
+    } catch (err) {
+        console.error('Erro ao ver funcionarios: ', err)
+        console.log(err)
+        res.status(500).json({ error: 'Erro interno no servidor '})
+    }
+})
