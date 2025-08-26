@@ -59,7 +59,7 @@ async function salvar_entrada() {
         if (response.ok) {
             alert(result.message)
             fechar_modal('modal-entrada')
-            localStorage.setItem('currentPontoId: ', result.id_ponto)
+            localStorage.setItem('currentPontoId', result.id_ponto)
 
             //armazenar o id_ponto retornado pelo back bb
             if (result.id_ponto) {
@@ -92,9 +92,7 @@ async function salvarSaida() {
     const dataHoraInput = document.getElementById('data-hora-saida')//input no html
     const dataHoraSaida = dataHoraInput.value 
 
-    const pontoParaSaida = id_ponto_saida
-
-    if (!dataHoraSaida || !pontoParaSaida) { //verifica se os campos estao preenchidos corretamente
+    if (!dataHoraSaida || !id_ponto) { //verifica se os campos estao preenchidos corretamente
         alert('Por favor, preencha os campos data/hora e o ID do funcionarios')
         return
     }
