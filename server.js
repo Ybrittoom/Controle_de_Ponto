@@ -143,10 +143,9 @@ app.get('/api/funcionarios', async (req, res) => {
         if (result.length > 0) {
             res.status(200).json(result)
         } else {
-            res.status(400).json({ message: 'Nenhum funcionario encontrado!'})
+            res.status(404).json({ message: 'Nenhum funcionario encontrado!'})
         }
 
-        res.status(200).json(result)
     } catch (err) {
         console.error('Erro ao ver funcionarios: ', err)
         console.log(err)
