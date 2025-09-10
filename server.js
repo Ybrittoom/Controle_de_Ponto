@@ -136,7 +136,7 @@ app.get('/api/funcionarios', async (req, res) => {
     try {
         const conexao = await pool.getConnection()
         const [result] = await conexao.execute(
-            'SELECT * FROM funcionario'
+            'SELECT nome_completo, cpf, cargo, numero_adesao FROM funcionario'
         )
         conexao.release()
 

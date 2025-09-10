@@ -11,8 +11,9 @@
 <body>
   <header class="cabecalho">
     <h1 class="titulo">Funcionarios</h1>
-    <div>
-      <a href="index.html" onclick="window.alert('Fucnionalidade em desenvolvimento!!!')">Opçoes</a>
+    <div class="opcoes">
+      <a href="../index.html" onclick="window.alert('Voltando para a pagina anterior!!')">Voltar</a>
+      <button>Cadastrar funcionario</button>
     </div>
   </header>
 
@@ -42,10 +43,19 @@
             <!--Funcionarios-->
           </tbody>
         </table>
+       
+        <div class="btn">
+          <button onclick="mostrarFuncionarios()" class="botaoBuscarFuncionarios">Buscar Funcionarios</button>
+        </div>
       </div>
     </div>
   </main>
 
+
+  <!--Modal de cadatrar funcionarios-->
+  
+
+  <script src="funcionario.js"></script>
 </body>
 
 </html>

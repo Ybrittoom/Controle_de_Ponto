@@ -162,3 +162,68 @@ tfoot td {
     font-weight: 600;
     color: #1e293b;
 }
+
+.opcoes a,
+.opcoes button {
+    background: linear-gradient(135deg, #2563eb, #1d4ed8);
+    color: #ffffff;
+    padding: 0.75rem 1.5rem;
+    border-radius: 9999px; /* Borda bem arredondada (pill shape) */
+    text-decoration: none;
+    font-weight: 600; /* Um pouco mais de peso na fonte */
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 15px rgba(30, 41, 59, 0.2);
+    border: none;
+    cursor: pointer;
+}
+
+.opcoes a:hover,
+.opcoes button:hover {
+    transform: translateY(-2px); /* Efeito de elevação ao passar o mouse */
+    background: linear-gradient(135deg, #1d4ed8, #2563eb);
+    box-shadow: 0 6px 20px rgba(30, 41, 59, 0.3);
+}
+
+.opcoes a:active,
+.opcoes button:active {
+    transform: translateY(0); /* Efeito de "pressionar" ao clicar */
+    box-shadow: 0 2px 5px rgba(30, 41, 59, 0.2);
+}
+
+.opcoes {
+    display: flex; /* Alinha os botões lado a lado */
+    gap: 1rem; /* Espaço entre os botões */
+    align-items: center; /* Centraliza verticalmente */
+}
+
+.botaoBuscarFuncionarios {
+    background: #16a34a;
+    color: white;
+    border-radius: 10px;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+    width: 200px;
+}
+
+.botaoBuscarFuncionarios:hover {
+    background: #e2e8f0;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px -1px rgba(30, 41, 59, 0.1), 0 2px 4px -2px rgba(30, 41, 59, 0.1);
+}
+
+.btn {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 10px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+}

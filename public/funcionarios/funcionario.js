@@ -29,7 +29,8 @@ async function mostrarFuncionarios() {
                 const row = document.createElement('tr')
 
                 const nomecell = document.createElement('td')
-                nomecell.textContent = funcionario.nomeFuncionario
+                nomecell.textContent = funcionario.nome_completo
+                nomecell.style.color = '#2563eb'
 
                 const cpfCell = document.createElement('td')
                 cpfCell.textContent = funcionario.cpf
@@ -38,7 +39,7 @@ async function mostrarFuncionarios() {
                 cargoCell.textContent = funcionario.cargo
 
                 const codigoAdesaoCell = document.createElement('td')
-                codigoAdesaoCell.textContent = funcionario.codigoAdesao
+                codigoAdesaoCell.textContent = funcionario.numero_adesao
 
                 row.appendChild(nomecell)
                 row.appendChild(cpfCell)
@@ -52,4 +53,9 @@ async function mostrarFuncionarios() {
         console.log('Erro ao buscar funcionarios', err.message)
         funcionariosTableBody.innerHTML = `<tr><td colspan="4" style="text-align: center; color: red;">${err.message || 'Erro ao carregar funcionários.'}</td></tr>`;
     }
+}
+
+
+async function cadastrarFuncionario() {
+    
 }
