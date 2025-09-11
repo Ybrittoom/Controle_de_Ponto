@@ -13,7 +13,7 @@
     <h1 class="titulo">Funcionarios</h1>
     <div class="opcoes">
       <a href="../index.html" onclick="window.alert('Voltando para a pagina anterior!!')">Voltar</a>
-      <button>Cadastrar funcionario</button>
+      <button onclick="abrirModalCadastrarFuncionarios()">Cadastrar funcionario</button>
     </div>
   </header>
 
@@ -53,7 +53,63 @@
 
 
   <!--Modal de cadatrar funcionarios-->
-  
+  <!-- 
+    nome
+    cpf
+    cargo
+    data de Nascimento
+    ativo
+    email
+    telefone
+    data contrataçao
+  -->
+  <div class="modalOverlay" style="display: none;" id="modalCadastrarFuncionario">
+    <div class="modal">
+      <h2>Cadastrar Novo Funcionario</h2>
+      
+      <div class="formGroup">
+        <label for="nomeFuncionario">Nome do funcionario</label>
+        <input type="text" name="txtNome" id="nomeFuncionario" placeholder="digite o nome completo">
+      </div>
+
+      <div class="formGroup">
+        <label for="CPF">CPF</label>
+        <input type="text" name="txtCPF" id="CPFFuncionario">
+      </div>
+
+      <div class="formGroup">
+        <label for="">Email</label>
+        <input type="email" name="email" id="emailFuncionario">
+      </div>
+
+      <div class="formGroup">
+        <label for="dataNascimento">Data de nascimento</label>
+        <input type="date" name="dateNascimento" id="dataNascimentoFuncionario">
+      </div>
+
+      <div class="formGroup">
+        <label for="telefone">Telefone</label>
+        <input type="text" name="telefone" id="telefoneFuncionario" pattern="[0-9]+" title="Apenas numeros!">
+      </div>
+
+      <div class="formGroup">
+        <label for="cargo">Cargo do funcionario</label>
+        <input type="text" name="txtCargo" id="cargofuncionario">
+      </div>
+
+      <div class="formGroup">
+        <label for="DataContratacao">Data de contrataçao</label>
+        <input type="date" name="DataContratacao" id="DataContratacaofuncionario">
+      </div>
+
+      <div class="modalActions">
+        <button class="btnSalvarFuncionario">Cadastrar</button>
+        <button class="btnFechar">Fechar</button>
+      </div>
+
+    </div>
+
+  </div>
 
   <script src="funcionario.js"></script>
 </body>

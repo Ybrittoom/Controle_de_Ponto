@@ -152,3 +152,36 @@ app.get('/api/funcionarios', async (req, res) => {
         res.status(500).json({ error: 'Erro interno no servidor '})
     }
 })
+
+//endpoint para cadastrar funcionario
+app.post('/api/cadastrar-funcionario', async (req, res) => {
+    const {nomeFuncionario, CPF, email, dataNascimento, telefone, cargo, dataContratacao } = req.body
+
+    console.log('REQ.BODY: ', req.body)
+
+    //validaçao para ver se esta tudo correto
+    if (!nomeFuncionario || !CPF || !email || !dataNascimento || !telefone || !cargo || !dataContratacao) {
+        return res.status(400).json({ error: 'Os campos sao obrigatorios!!'})
+    }
+
+    try {
+        const conexao = await pool.getConnection()// obtem a conexao do mysql
+        const [result] = await conexao.execute(
+            'INSERT INTO funcionario (nomeFuncionario, CPF, email, dataNascimento, telefone, cargo, dataContratacao) values (?, ?, ?, ?, ?, ?, ?)',
+            [
+                nomeFuncionario,
+                CPF,
+                email,
+                dataNascimento,
+                telefone,
+                cargo,
+                dataContratacao
+            ]
+        )
+        conexao.release()//libera a conexao e volta para o pool
+        res.status(200).json({ mesage: 'Funcionario cadastrado com sucesso!!'})
+    } catch (erro) {
+        console.log('Erro ao registrar o ponto: ', erro)
+        res.status(500).json({ error: 'Erro interno no servidor ao cadastrat o funcionario'})
+    }
+})

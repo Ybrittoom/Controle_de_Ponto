@@ -55,7 +55,59 @@ async function mostrarFuncionarios() {
     }
 }
 
+function abrirModalCadastrarFuncionarios() {
+    const modalCadastrarFuncionario = document.getElementById('modalCadastrarFuncionario')
+    modalCadastrarFuncionario.style.display = "block"
+}
 
 async function cadastrarFuncionario() {
     
+    const nomeFuncionario = document.getElementById('nomeFuncionario').value
+    const CPF = document.getElementById('CPF').value
+    const email = document.getElementById('email').value
+    const dataNascimento = document.getElementById('dataNascimento').value
+    const telefone = document.getElementById('telefone').value
+    const cargo = document.getElementById('cargo').value
+    const dataContratacao = document.getElementById('dataContratacao').value
+
+    if (!nomeFuncionario || !CPF || !email || !dataNascimento || !telefone || !cargo || !dataContratacao) {
+        alert('Por favor, varifique se esta tudo preenchido no cadastro!!')
+        return
+    }
+
+    console.log('nome Funcionario:', nomeFuncionario)
+    console.log('CPF:', CPF)
+    console.log('email:', email)
+    console.log('data de Nascimento:', dataNascimento)
+    console.log('telefone:', telefone)
+    console.log('cargo:', cargo)
+    console.log('data de Contratacao:', dataContratacao)
+
+    try {
+        const response = await fetch('/api/registrar-entrada', {
+            method: 'POST',
+            headers: {
+                'Content-Type:': 'application/json'
+            },
+            body: JSON.stringify({
+                nomeFuncionario: nomeFuncionario,
+                CPF: CPF,
+                email: email,
+                dataNascimento: dataNascimento,
+                telefone: telefone,
+                cargo: cargo,
+                dataContratacao: dataContratacao
+            })
+        })
+
+        const result = await response.json()
+
+        if (response.ok) {
+            alert(result.message)
+            
+        }
+    } catch (error) {
+        
+    }
+
 }

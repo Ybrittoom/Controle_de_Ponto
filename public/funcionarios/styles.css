@@ -227,3 +227,120 @@ tfoot td {
     gap: 0.5rem;
     font-size: 0.875rem;
 }
+
+
+/*estilizaçao do MODAL (adicionar funcionario)*/
+.modalOrvelay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    opacity: 1;
+}
+
+.modal {
+    background-color: #ffffff;
+    border-radius: 0.75rem;
+    padding: 2rem;
+    width: 90%;
+    max-width: 500px;
+    box-shadow: 0 10px 15px -3px rgba(30, 41, 59, 0.1), 0 4px 6px -4px rgba(30, 41, 59, 0.1);
+}
+
+.modal h2 {
+    margin-bottom: 1.5rem;
+    color: #2563eb;
+    font-size: 1.5rem;
+    font-weight: 600;
+    text-align: center;
+}
+
+.formGroup {
+    margin-bottom: 1rem;
+}
+
+.formGroup label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: #1e293b;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #d1d5db;
+    border-radius: 0.75rem;
+    background: #fafafa;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    font-size: 0.875rem;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+    background: #ffffff;
+}
+
+.modal-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.btn {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 0.75rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    flex: 1;
+}
+
+.btnSalvarFuncionario {
+    background: #16a34a;
+    color: white;
+}
+
+.btnSalvarFuncionario:hover {
+    background: #15803d;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px -1px rgba(30, 41, 59, 0.1), 0 2px 4px -2px rgba(30, 41, 59, 0.1);
+}
+
+.btnFechar {
+    background: #f1f5f9;
+    color: #475569;
+    border: 1px solid #e2e8f0;
+}
+
+.btnFechar:hover {
+    background: #e2e8f0;
+    transform: translateY(-2px);
+        box-shadow: 0 4px 6px -1px rgba(30, 41, 59, 0.1), 0 2px 4px -2px rgba(30, 41, 59, 0.1);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .modal {
+        padding: 1.5rem;
+        margin: 1rem;
+    }
+            
+    .modalActions {
+        flex-direction: column;
+    }
+}
