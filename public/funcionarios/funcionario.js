@@ -14,13 +14,13 @@ async function mostrarFuncionarios() {
         if (!response.ok) {
             const errorData = await response.json()
             throw new Error(errorData.message || 'Falha ao buscar os funcionarios.')
-        } 
+        }
 
         const funcionarios = await response.json()
 
         funcionariosTableBody.innerHTML = ''
 
-        if (funcionarios.length === 0 ) {
+        if (funcionarios.length === 0) {
             const row = document.createElement('tr')
             row.innerHTML = '<td colspan="4" style="text-align: center;">Nenhum funcionário encontrado.</td>'
             funcionariosTableBody.appendChild(row)
@@ -61,21 +61,21 @@ function abrirModalCadastrarFuncionarios() {
 }
 
 async function cadastrarFuncionario() {
-    
-    const nomeFuncionario = document.getElementById('nomeFuncionario').value
-    const CPF = document.getElementById('CPF').value
-    const email = document.getElementById('email').value
-    const dataNascimento = document.getElementById('dataNascimento').value
-    const telefone = document.getElementById('telefone').value
-    const cargo = document.getElementById('cargo').value
-    const dataContratacao = document.getElementById('dataContratacao').value
 
-    if (!nomeFuncionario || !CPF || !email || !dataNascimento || !telefone || !cargo || !dataContratacao) {
+    const nomeCompleto = document.getElementById('nomeFuncionario').value
+    const CPF = document.getElementById('CPFFuncionario').value
+    const email = document.getElementById('emailFuncionario').value
+    const dataNascimento = document.getElementById('dataNascimentoFuncionario').value
+    const telefone = document.getElementById('telefoneFuncionario').value
+    const cargo = document.getElementById('cargofuncionario').value
+    const dataContratacao = document.getElementById('DataContratacaofuncionario').value
+
+    if (!nomeCompleto || !CPF || !email || !dataNascimento || !telefone || !cargo || !dataContratacao) {
         alert('Por favor, varifique se esta tudo preenchido no cadastro!!')
         return
     }
 
-    console.log('nome Funcionario:', nomeFuncionario)
+    console.log('nome Funcionario:', nomeCompleto)
     console.log('CPF:', CPF)
     console.log('email:', email)
     console.log('data de Nascimento:', dataNascimento)
@@ -84,13 +84,13 @@ async function cadastrarFuncionario() {
     console.log('data de Contratacao:', dataContratacao)
 
     try {
-        const response = await fetch('/api/registrar-entrada', {
+        const response = await fetch('/api/cadastrar-funcionario', {
             method: 'POST',
             headers: {
-                'Content-Type:': 'application/json'
+                'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                nomeFuncionario: nomeFuncionario,
+                nomeCompleto: nomeCompleto,
                 CPF: CPF,
                 email: email,
                 dataNascimento: dataNascimento,
@@ -104,10 +104,11 @@ async function cadastrarFuncionario() {
 
         if (response.ok) {
             alert(result.message)
-            
+        } else {
+            alert('Erro ao cadastrar o novo funcionario: ' + " " + result.error)
         }
     } catch (error) {
-        
+        console.log('Erro interno no servidor', error)
     }
 
 }

@@ -167,9 +167,9 @@ app.post('/api/cadastrar-funcionario', async (req, res) => {
     try {
         const conexao = await pool.getConnection()// obtem a conexao do mysql
         const [result] = await conexao.execute(
-            'INSERT INTO funcionario (nomeFuncionario, CPF, email, dataNascimento, telefone, cargo, dataContratacao) values (?, ?, ?, ?, ?, ?, ?)',
+            'INSERT INTO funcionario (nomeCompleto, CPF, email, dataNascimento, telefone, cargo, dataContratacao) values (?, ?, ?, ?, ?, ?, ?)',
             [
-                nomeFuncionario,
+                nomeCompleto,
                 CPF,
                 email,
                 dataNascimento,
