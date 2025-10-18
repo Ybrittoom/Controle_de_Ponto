@@ -51,6 +51,9 @@
           </ul>
           <button class="btn btn-historico" id="btn-ver-historico-completo" onclick=" carregarHistoricoDePontos()">Ver
             Historico Completo</button>
+            <button class="btnCadastrarFuncionario">
+              Cadastrar funcionario
+            </button>
         </div>
       </div>
     </section>
@@ -106,6 +109,29 @@
 
   <!--Modal de almoço-->
   <div class="modal-overlay" id="modal-almoco" style="display: none;">
+    <div class="modal">
+      <h2>Regsitrar Almoço</h2>
+      <div class="form-group">
+        <label for="data/horaAlmoco">Data/hora Almoço</label>
+        <input type="number" id="id_ponto_almoco">
+      </div>
+
+      <div class="form-group">
+        <label for="id_ponto">Id do ponto(entrada)</label>
+        <input type="datetime-local" id="data_hora_almoco">
+      </div>
+
+      <div class="modal-actions">
+        <button class="btn_salvar_almoco" onclick="salvarAlmoco()">Salvar</button>
+        <button class="btn-fechar" onclick="fechar_modal('modal-almoco')">Fechar</button>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!--MODAL DE CADASTRAR OS FUNCIONARIOS-->
+  <div class="modal-overlay" id="modalCadastrarFuncionario" style="display: none;">
     <div class="modal">
       <h2>Regsitrar Almoço</h2>
       <div class="form-group">
