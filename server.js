@@ -6,9 +6,6 @@ const mysql = require('mysql2/promise')
 
 app.use(express.static(path.join(__dirname, 'public')))
 
-app.listen(port, () => {
-    console.log(`Servidor rodando em http://localhost:${port}`)
-})
 
 //bloco do MySql
 
@@ -34,7 +31,7 @@ app.post('/api/registrar-entrada', async (req, res) => {
 
     //validaçao basica
     if (!codigoAdesao || !data_hora_entrada) {
-        return res.status(400).json({ error: 'Numero de adesao do funcionario e data/hora sao obrigatorios'})
+        return res.status(400).json({ error: 'Numero de adesao do funcionario e data/hora sao obrigatorios' })
     }
 
 
@@ -45,10 +42,10 @@ app.post('/api/registrar-entrada', async (req, res) => {
             [codigoAdesao, data_hora_entrada]
         )
         conexao.release() //libera a conexao e volta para o pool
-        res.status(201).json({ message: 'Ponto de entrada registrado com sucesso', id_ponto: result.insertId/*contem o ID da ultima inserçao AUTO_INCREMENT */})
+        res.status(201).json({ message: 'Ponto de entrada registrado com sucesso', id_ponto: result.insertId/*contem o ID da ultima inserçao AUTO_INCREMENT */ })
     } catch (erro) {
         console.error('Erro ao registrar o ponto:', erro)
-        res.status(500).json({ error: 'Erro interno no servidor ao registrar entrada'})
+        res.status(500).json({ error: 'Erro interno no servidor ao registrar entrada' })
     }
 })
 
@@ -58,7 +55,7 @@ app.put('/api/registrar-saida/:id_ponto', async (req, res) => {
     const { data_hora_saida } = req.body
 
     if (!data_hora_saida) {
-        return res.status(400).json({ error: 'Data/Hora de saida é obrigatorio!'})
+        return res.status(400).json({ error: 'Data/Hora de saida é obrigatorio!' })
     }
 
     console.log('LADO DO SERVIDOR: ID da entrada: ', id_ponto)
@@ -71,13 +68,13 @@ app.put('/api/registrar-saida/:id_ponto', async (req, res) => {
         )
         conexao.release()
 
-        if (result.affectedRows === 0 ) {
-            return res.status(400).json({ message: 'Registro de ponto nao encontrado'})
+        if (result.affectedRows === 0) {
+            return res.status(400).json({ message: 'Registro de ponto nao encontrado' })
         }
-        res.status(200).json({ message: 'Ponto de saida registrado com sucesso!'})
+        res.status(200).json({ message: 'Ponto de saida registrado com sucesso!' })
     } catch (err) {
         console.error('Erro ao registrar saida', err)
-        res.status(500).json({ error: 'Erro interno no servidor '})
+        res.status(500).json({ error: 'Erro interno no servidor ' })
     }
 })
 
@@ -89,7 +86,7 @@ app.put('/api/registrar-almoco/:id_ponto', async (req, res) => {
     const hora = hora_almoco.slice(11, 16)
 
     if (!hora_almoco) {
-        return res.status(400).json({ error: 'Hora do almoço obrigatorio!'})
+        return res.status(400).json({ error: 'Hora do almoço obrigatorio!' })
     }
 
     try {
@@ -100,13 +97,13 @@ app.put('/api/registrar-almoco/:id_ponto', async (req, res) => {
         )
         conexao.release()
 
-        if (result.affectedRows === 0 ) {
-            return res.status(400).json({ message: 'Registro de ponto nao encontrado'})
+        if (result.affectedRows === 0) {
+            return res.status(400).json({ message: 'Registro de ponto nao encontrado' })
         }
-        res.status(200).json({ message: 'Ponto de almoço registrado com sucesso'})
+        res.status(200).json({ message: 'Ponto de almoço registrado com sucesso' })
     } catch (err) {
         console.error('Erro ao registrar almoço', err)
-        res.status(500).json({ error: 'Erro interno no servidor'})
+        res.status(500).json({ error: 'Erro interno no servidor' })
     }
 })
 
@@ -114,7 +111,7 @@ app.put('/api/registrar-almoco/:id_ponto', async (req, res) => {
 app.get('/api/historico-de-pontos/:id_funcionario', async (req, res) => {
     const { id_funcionario } = req.params
 
-    
+
     try {
         const conexao = await pool.getConnection()
         const [result] = await conexao.execute(
@@ -127,7 +124,7 @@ app.get('/api/historico-de-pontos/:id_funcionario', async (req, res) => {
     } catch (err) {
         console.error('Erro ao ver historico: ', err)
         console.log(err)
-        res.status(500).json({ error: 'Erro interno no servidor'})
+        res.status(500).json({ error: 'Erro interno no servidor' })
     }
 })
 
@@ -143,31 +140,31 @@ app.get('/api/funcionarios', async (req, res) => {
         if (result.length > 0) {
             res.status(200).json(result)
         } else {
-            res.status(404).json({ message: 'Nenhum funcionario encontrado!'})
+            res.status(404).json({ message: 'Nenhum funcionario encontrado!' })
         }
 
     } catch (err) {
         console.error('Erro ao ver funcionarios: ', err)
         console.log(err)
-        res.status(500).json({ error: 'Erro interno no servidor '})
+        res.status(500).json({ error: 'Erro interno no servidor ' })
     }
 })
 
 //endpoint para cadastrar funcionario
 app.post('/api/cadastrar-funcionario', async (req, res) => {
-    const {nomeFuncionario, CPF, email, dataNascimento, telefone, cargo, dataContratacao } = req.body
+    const { nomeCompleto, CPF, email, dataNascimento, telefone, cargo, dataContratacao } = req.body
 
     console.log('REQ.BODY: ', req.body)
 
     //validaçao para ver se esta tudo correto
-    if (!nomeFuncionario || !CPF || !email || !dataNascimento || !telefone || !cargo || !dataContratacao) {
-        return res.status(400).json({ error: 'Os campos sao obrigatorios!!'})
+    if (!nomeCompleto || !CPF || !email || !dataNascimento || !telefone || !cargo || !dataContratacao) {
+        return res.status(400).json({ error: 'Os campos sao obrigatorios!!' })
     }
 
     try {
         const conexao = await pool.getConnection()// obtem a conexao do mysql
         const [result] = await conexao.execute(
-            'INSERT INTO funcionario (nomeCompleto, CPF, email, dataNascimento, telefone, cargo, dataContratacao) values (?, ?, ?, ?, ?, ?, ?)',
+            'INSERT INTO funcionario (nome_completo, cpf, email, data_nascimento, telefone, cargo, data_contratacao) values (?, ?, ?, ?, ?, ?, ?)',
             [
                 nomeCompleto,
                 CPF,
@@ -179,9 +176,13 @@ app.post('/api/cadastrar-funcionario', async (req, res) => {
             ]
         )
         conexao.release()//libera a conexao e volta para o pool
-        res.status(200).json({ mesage: 'Funcionario cadastrado com sucesso!!'})
+        res.status(200).json({ message: 'Funcionario cadastrado com sucesso!!' })
     } catch (erro) {
         console.log('Erro ao registrar o ponto: ', erro)
-        res.status(500).json({ error: 'Erro interno no servidor ao cadastrat o funcionario'})
+        res.status(500).json({ error: 'Erro interno no servidor ao cadastrat o funcionario' })
     }
+})
+
+app.listen(port, '0.0.0.0', () => {
+    console.log(`Servidor rodando em http://localhost:${port} ou Via IP local`)
 })

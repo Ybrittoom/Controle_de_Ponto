@@ -60,6 +60,11 @@ function abrirModalCadastrarFuncionarios() {
     modalCadastrarFuncionario.style.display = "block"
 }
 
+function fecharModal() {
+    const modalCadastrarFuncionario = document.getElementById('modalCadastrarFuncionario')
+    modalCadastrarFuncionario.style.display = "none"
+}
+
 async function cadastrarFuncionario() {
 
     const nomeCompleto = document.getElementById('nomeFuncionario').value

@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="funcionario.css">
   <title>Funcionarios</title>
 </head>
 
@@ -63,7 +63,7 @@
     telefone
     data contrataçao
   -->
-  <div class="modalOverlay" style="display: none;" id="modalCadastrarFuncionario">
+  <div class="modal-overlay" style="display: none;" id="modalCadastrarFuncionario">
     <div class="modal">
       <h2>Cadastrar Novo Funcionario</h2>
       
@@ -104,7 +104,7 @@
 
       <div class="modalActions">
         <button class="btnSalvarFuncionario" onclick="cadastrarFuncionario()">Cadastrar</button>
-        <button class="btnFechar">Fechar</button>
+        <button class="btnFechar" id="fecharModal" onclick="fecharModal()">Fechar</button>
       </div>
 
     </div>
